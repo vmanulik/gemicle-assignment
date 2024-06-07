@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gemicle.MarketerTool.API", "Gemicle.MarketerTool.API\Gemicle.MarketerTool.API.csproj", "{04BEFAA2-2391-4E2F-A492-22CCA4DB7260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemicle.MarketerTool.Data", "Gemicle.MarketerTool.Data\Gemicle.MarketerTool.Data.csproj", "{36E8C8EF-33DC-4913-885C-8C19F7ABA381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemicle.MarketerTool.Services", "Gemicle.MarketerTool.Services\Gemicle.MarketerTool.Services.csproj", "{90EABB3C-2F0A-4B78-9181-010FDE896811}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{04BEFAA2-2391-4E2F-A492-22CCA4DB7260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04BEFAA2-2391-4E2F-A492-22CCA4DB7260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04BEFAA2-2391-4E2F-A492-22CCA4DB7260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04BEFAA2-2391-4E2F-A492-22CCA4DB7260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E8C8EF-33DC-4913-885C-8C19F7ABA381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E8C8EF-33DC-4913-885C-8C19F7ABA381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E8C8EF-33DC-4913-885C-8C19F7ABA381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E8C8EF-33DC-4913-885C-8C19F7ABA381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EABB3C-2F0A-4B78-9181-010FDE896811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EABB3C-2F0A-4B78-9181-010FDE896811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EABB3C-2F0A-4B78-9181-010FDE896811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EABB3C-2F0A-4B78-9181-010FDE896811}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E729ADB5-51E6-4F8B-BD2E-ACB2669B511D}
+	EndGlobalSection
+EndGlobal
