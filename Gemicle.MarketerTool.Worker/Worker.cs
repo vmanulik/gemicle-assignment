@@ -20,6 +20,7 @@ namespace Gemicle.MarketerTool.Worker
             _customerList = await apiHttpService.GetCustomersAsync();
             _campaignsList = await apiHttpService.GetCampaignsAsync();
 
+            // sort customers to particular campaigns basing on priority and rules
             var manager = new CampainsManager(_customerList, _campaignsList);
             var campaigns = manager.BuildCampaigns();
 
@@ -34,7 +35,7 @@ namespace Gemicle.MarketerTool.Worker
                     .UsingJobData("campaignCustomer", JsonSerializer.Serialize(campaign))
                     .WithSchedule(CronScheduleBuilder
                     //.DailyAtHourAndMinute(queue.campaign.Time.Hours, queue.campaign.Time.Minutes))
-                    .DailyAtHourAndMinute(18, 45)) // testing
+                    .DailyAtHourAndMinute(19, 19)) // testing
                     .Build();
 
                 await scheduler.ScheduleJob(job, trigger, cancellationToken);

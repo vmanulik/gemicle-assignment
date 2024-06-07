@@ -4,7 +4,8 @@
     {
         public async Task SendAsync(MailMessage message)
         {
-            
+            // use ticks to ensure unique names
+             await File.WriteAllBytesAsync(@$"C:\\sends{message.TimeStamp.ToShortDateString()}_{message.TimeStamp.Ticks}", message.Body);
         }
     }
 }
