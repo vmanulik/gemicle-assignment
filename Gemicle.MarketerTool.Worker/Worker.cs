@@ -1,7 +1,5 @@
 using Gemicle.MarketerTool.Domain;
 using Gemicle.MarketerTool.Worker.HttpService;
-using Serialize.Linq.Serializers;
-using System.Linq.Expressions;
 
 namespace Gemicle.MarketerTool.Worker
 {
@@ -16,9 +14,8 @@ namespace Gemicle.MarketerTool.Worker
             _customerList = await apiHttpService.GetCustomersAsync();
             _campaignsList = await apiHttpService.GetCampaignsAsync();
 
-            var serializer = new ExpressionSerializer(new JsonSerializer());
-            var firstPredicate = (Expression<Func<Domain.Customer, bool>>) serializer.DeserializeText(_campaignsList.First().PredicateJson);
-            IEnumerable<Customer> firstData = _customerList.AsQueryable().Where(firstPredicate);
+            var scheduler = new CampaignsScheduler(_customerList, _campaignsList);
+            var queues = scheduler.BuildQueues();
 
             await base.StartAsync(cancellationToken);
         }
