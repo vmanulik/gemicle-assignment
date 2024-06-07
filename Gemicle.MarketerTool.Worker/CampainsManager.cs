@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Gemicle.MarketerTool.Worker
 {
-    public class CampaignsScheduler(
+    public class CampainsManager(
         List<Customer> customerList,
         List<Campaign> campaignsList)
     {        

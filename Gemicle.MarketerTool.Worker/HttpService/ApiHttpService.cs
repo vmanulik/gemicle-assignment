@@ -3,18 +3,11 @@ using System.Net.Http.Json;
 
 namespace Gemicle.MarketerTool.Worker.HttpService
 {
-    public class ApiHttpService : IApiHttpService
+    public class ApiHttpService(IHttpClientFactory factory) : IApiHttpService
     {
-        private readonly IHttpClientFactory _factory;
-
-        public ApiHttpService(IHttpClientFactory factory)
-        {
-            _factory = factory;
-        }
-
         public async Task<List<Customer>> GetCustomersAsync()
         {
-            using (HttpClient client = _factory.CreateClient("gemicle-api"))
+            using (HttpClient client = factory.CreateClient("gemicle-api"))
             {
                 var response = await client.GetAsync("api/customer");
                 if (!response.IsSuccessStatusCode)
@@ -28,7 +21,7 @@ namespace Gemicle.MarketerTool.Worker.HttpService
 
         public async Task<List<Campaign>> GetCampaignsAsync()
         {
-            using (HttpClient client = _factory.CreateClient("gemicle-api"))
+            using (HttpClient client = factory.CreateClient("gemicle-api"))
             {
                 var response = await client.GetAsync("api/campaign");
                 if (!response.IsSuccessStatusCode)
