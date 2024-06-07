@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gemicle.MarketerTool.Data\Gemicle.MarketerTool.Data.csproj" />
+  </ItemGroup>
+
 </Project>
