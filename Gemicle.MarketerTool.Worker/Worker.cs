@@ -34,8 +34,8 @@ namespace Gemicle.MarketerTool.Worker
                     .WithIdentity($"MailTrigger with Prioity {campaign.Campaign.Priority}", "MailTriggers")
                     .UsingJobData("campaignCustomer", JsonSerializer.Serialize(campaign))
                     .WithSchedule(CronScheduleBuilder
-                    //.DailyAtHourAndMinute(queue.campaign.Time.Hours, queue.campaign.Time.Minutes))
-                    .DailyAtHourAndMinute(19, 19)) // testing
+                    //.DailyAtHourAndMinute(campaign.Campaign.Time.Hours, campaign.Campaign.Time.Minutes))
+                    .DailyAtHourAndMinute(23, 11)) // testing
                     .Build();
 
                 await scheduler.ScheduleJob(job, trigger, cancellationToken);
