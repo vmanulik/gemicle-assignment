@@ -1,9 +1,7 @@
-﻿using System.Net.Mail;
-
-namespace Gemicle.MarketerTool.Worker.MailClient
+﻿namespace Gemicle.MarketerTool.Worker.MailClient
 {
     public interface IMailClient
     {
-        Task SendAsync(MailMessage message);
+        Task SendAsync(IEnumerable<MailMessage> messages);
     }
 }

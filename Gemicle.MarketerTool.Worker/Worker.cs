@@ -24,7 +24,7 @@ namespace Gemicle.MarketerTool.Worker
             var manager = new CampainsManager(_customerList, _campaignsList);
             var campaigns = manager.BuildCampaigns();
 
-            foreach(var campaign in campaigns)
+            foreach (var campaign in campaigns)
             {
                 IJobDetail job = JobBuilder.Create<MailJob>()
                     .WithIdentity($"MailJob with Prioity {campaign.Campaign.Priority}", "MailJobs")
@@ -34,8 +34,7 @@ namespace Gemicle.MarketerTool.Worker
                     .WithIdentity($"MailTrigger with Prioity {campaign.Campaign.Priority}", "MailTriggers")
                     .UsingJobData("campaignCustomer", JsonSerializer.Serialize(campaign))
                     .WithSchedule(CronScheduleBuilder
-                    //.DailyAtHourAndMinute(campaign.Campaign.Time.Hours, campaign.Campaign.Time.Minutes))
-                    .DailyAtHourAndMinute(23, 11)) // testing
+                    .DailyAtHourAndMinute(campaign.Campaign.Time.Hours, campaign.Campaign.Time.Minutes))
                     .Build();
 
                 await scheduler.ScheduleJob(job, trigger, cancellationToken);

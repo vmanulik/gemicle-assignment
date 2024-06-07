@@ -12,16 +12,18 @@ namespace Gemicle.MarketerTool.Worker
             CampaignCustomers campaignCustomers = JsonSerializer.Deserialize<CampaignCustomers>(dataMap["campaignCustomer"].ToString());
 
             // actual customer data is not used as per assignement task
+            var messages = new List<MailMessage>();
             foreach(var customer in campaignCustomers.Customers)
             {
                 var message = new MailMessage()
                 {
-                    TimeStamp = DateTime.Now,
                     Body = await File.ReadAllBytesAsync($".\\Templates\\{campaignCustomers.Campaign.Template}.html")
                 };
 
-                await mailClient.SendAsync(message);
+                messages.Add(message);
             }
+
+            await mailClient.SendAsync(messages);
 
             // wait for now reason as it stated in the assigment
             await Task.Delay(new TimeSpan(hours: 0, minutes: 30, seconds: 0));
