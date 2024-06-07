@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Gemicle.MarketerTool.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CustomerController(ILogger<CustomerController> logger,
                                   ICustomerService сustomerService,
                                   IMapper mapper) : ControllerBase

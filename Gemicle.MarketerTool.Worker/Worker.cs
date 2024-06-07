@@ -1,18 +1,20 @@
+using Gemicle.MarketerTool.Worker.HttpService;
+
 namespace Gemicle.MarketerTool.Worker
 {
-    public class Worker : BackgroundService
+    public class Worker(IApiHttpService apiHttpService,
+                        ILogger<Worker> _logger) : BackgroundService
     {
-        private readonly ILogger<Worker> _logger;
-
-        public Worker(ILogger<Worker> logger)
-        {
-            _logger = logger;
-        }
-
-        public override Task StartAsync(CancellationToken cancellationToken)
+        public async override Task StartAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation("Worker started...");
-            return base.StartAsync(cancellationToken);
+
+            // await for API to start
+            var customers = await apiHttpService.GetCustomersAsync();
+
+            _logger.LogInformation("Customers loaded...");
+
+            await base.StartAsync(cancellationToken);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
