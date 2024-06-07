@@ -18,4 +18,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Gemicle.MarketerTool.Domain\Gemicle.MarketerTool.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Templates\A.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\B.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\C.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 using Gemicle.MarketerTool.Domain;
 using Gemicle.MarketerTool.Worker.HttpService;
 using Quartz;
+using System.Text.Json;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Gemicle.MarketerTool.Worker
 {
@@ -19,19 +21,20 @@ namespace Gemicle.MarketerTool.Worker
             _campaignsList = await apiHttpService.GetCampaignsAsync();
 
             var manager = new CampainsManager(_customerList, _campaignsList);
-            var queues = manager.BuildQueues();
+            var campaigns = manager.BuildCampaigns();
 
-            foreach(var queue in queues)
+            foreach(var campaign in campaigns)
             {
                 IJobDetail job = JobBuilder.Create<MailJob>()
-                    .WithIdentity($"MailJob with Prioity {queue.campaign.Priority}", "MailJobs")
+                    .WithIdentity($"MailJob with Prioity {campaign.Campaign.Priority}", "MailJobs")
                     .Build();
 
                 ITrigger trigger = TriggerBuilder.Create()
-                    .WithIdentity($"MailTrigger with Prioity {queue.campaign.Priority}", "MailTriggers")
+                    .WithIdentity($"MailTrigger with Prioity {campaign.Campaign.Priority}", "MailTriggers")
+                    .UsingJobData("campaignCustomer", JsonSerializer.Serialize(campaign))
                     .WithSchedule(CronScheduleBuilder
                     //.DailyAtHourAndMinute(queue.campaign.Time.Hours, queue.campaign.Time.Minutes))
-                    .DailyAtHourAndMinute(18, 18)) // testing
+                    .DailyAtHourAndMinute(18, 45)) // testing
                     .Build();
 
                 await scheduler.ScheduleJob(job, trigger, cancellationToken);
@@ -40,6 +43,7 @@ namespace Gemicle.MarketerTool.Worker
             await scheduler.Start(cancellationToken);
         }
 
+        // is not used due to the usage of Quartz.NET for queued jobs
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) { }
     }
 }

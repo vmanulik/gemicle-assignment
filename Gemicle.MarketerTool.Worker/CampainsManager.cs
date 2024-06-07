@@ -8,10 +8,10 @@ namespace Gemicle.MarketerTool.Worker
         List<Customer> customerList,
         List<Campaign> campaignsList)
     {        
-        public List<(Campaign campaign, IEnumerable<Customer>)> BuildQueues()
+        public List<CampaignCustomers> BuildCampaigns()
         {
             var serializer = new ExpressionSerializer(new JsonSerializer());
-            List<(Campaign campaign, IEnumerable<Customer>)> campaignCustomers = new List<(Campaign campaign, IEnumerable<Customer>)>(campaignsList.Count);
+            var campaignCustomers = new List<CampaignCustomers>(campaignsList.Count);
             var processedCustomers = new List<Customer>(customerList.Count);
 
             // assume higher number means higher prioity due to the nature of example predicates
@@ -23,7 +23,11 @@ namespace Gemicle.MarketerTool.Worker
                 IEnumerable<Customer> filteredCustomers = customerList.AsQueryable().Where(predicate);
                 var eligibleCustomers = filteredCustomers.Where(c => !processedCustomers.Contains(c));
 
-                campaignCustomers.Add((campaign, eligibleCustomers.ToList()));
+                campaignCustomers.Add(new CampaignCustomers()
+                {
+                    Campaign = campaign,
+                    Customers = eligibleCustomers.ToList()
+                });
                 processedCustomers.AddRange(eligibleCustomers);
             }
 
