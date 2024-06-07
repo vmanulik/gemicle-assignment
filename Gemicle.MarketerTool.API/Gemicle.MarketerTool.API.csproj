@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gemicle.MarketerTool.Data\Gemicle.MarketerTool.Data.csproj" />
+    <ProjectReference Include="..\Gemicle.MarketerTool.Domain\Gemicle.MarketerTool.Domain.csproj" />
     <ProjectReference Include="..\Gemicle.MarketerTool.Services\Gemicle.MarketerTool.Services.csproj" />
   </ItemGroup>
 

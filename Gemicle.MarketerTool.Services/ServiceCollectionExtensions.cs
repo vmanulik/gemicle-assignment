@@ -8,6 +8,7 @@ namespace Gemicle.Calculator.Services
         public static void AddMarketerToolServices(this IServiceCollection services)
         {
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICampaignService, CampaignService>();
 
             services.AddMemoryCache();
         }

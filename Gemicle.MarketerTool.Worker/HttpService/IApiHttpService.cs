@@ -5,5 +5,7 @@ namespace Gemicle.MarketerTool.Worker.HttpService
     public interface IApiHttpService
     {
         Task<List<CustomerDto>> GetCustomersAsync();
+
+        Task<List<CampaignDto>> GetCampaignsAsync();
     }
 }

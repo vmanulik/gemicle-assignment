@@ -14,6 +14,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.6" />
+    <PackageReference Include="Serialize.Linq" Version="3.0.152" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gemicle.MarketerTool.Domain\Gemicle.MarketerTool.Domain.csproj" />
   </ItemGroup>
 
 </Project>

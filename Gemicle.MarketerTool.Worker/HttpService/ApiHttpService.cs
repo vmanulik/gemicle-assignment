@@ -25,5 +25,19 @@ namespace Gemicle.MarketerTool.Worker.HttpService
                 return await response.Content.ReadFromJsonAsync<List<CustomerDto>>() ?? [];
             }
         }
+
+        public async Task<List<CampaignDto>> GetCampaignsAsync()
+        {
+            using (HttpClient client = _factory.CreateClient("gemicle-api"))
+            {
+                var response = await client.GetAsync("api/campaign");
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception($"Cannot fetch campaigns, status code: {response.StatusCode}");
+                }
+
+                return await response.Content.ReadFromJsonAsync<List<CampaignDto>>() ?? [];
+            }
+        }
     }
 }

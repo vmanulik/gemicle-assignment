@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using Gemicle.MarketerTool.Data.Models;
+using Serialize.Linq.Serializers;
+using System.Linq.Expressions;
 
 namespace Gemicle.MarketerTool.Data
 {
@@ -10,6 +11,9 @@ namespace Gemicle.MarketerTool.Data
         {
             modelBuilder.Entity<Customer>()
                 .HasData(GetCustomers());
+
+            modelBuilder.Entity<Campaign>()
+                .HasData(GetCampaigns());
         }
 
         internal static IEnumerable<Customer> GetCustomers()
@@ -56,6 +60,60 @@ namespace Gemicle.MarketerTool.Data
                 new() { Id = 38, Age = 26, Gender = Gender.Female, City = "New York", Deposite= 78, IsNewCustomer = true },
                 new() { Id = 39, Age = 49, Gender = Gender.Female, City = "Tel-Aviv", Deposite= 60, IsNewCustomer = false },
                 new() { Id = 40, Age = 74, Gender = Gender.Female, City = "New York", Deposite= 53, IsNewCustomer = true },
+            };
+        }
+      
+        internal static IEnumerable<Campaign> GetCampaigns()
+        {
+            var serializer = new ExpressionSerializer(new JsonSerializer());
+
+            return new List<Campaign>()
+            {
+                new() {
+                    Id = 1,
+                    Priority = 1,
+                    Template = Template.A,
+                    Time = new TimeSpan(hours: 10, minutes: 15, seconds: 0),
+                    PredicateJson = serializer.SerializeText(
+                        (Expression<Func<Domain.Customer, bool>>)(customer => customer.Gender == Domain.Gender.Male)
+                    ) 
+                },
+                new() {
+                    Id = 2,
+                    Priority = 2,
+                    Template = Template.B,
+                    Time = new TimeSpan(hours: 10, minutes: 05, seconds: 0),
+                    PredicateJson = serializer.SerializeText(
+                        (Expression<Func<Domain.Customer, bool>>)(customer => customer.Age > 45)
+                    )
+                },
+                new() {
+                    Id = 3,
+                    Priority = 5,
+                    Template = Template.C,
+                    Time = new TimeSpan(hours: 10, minutes: 15, seconds: 0),
+                    PredicateJson = serializer.SerializeText(
+                        (Expression<Func<Domain.Customer, bool>>)(customer => customer.City == "New York")
+                    )
+                },
+                new() {
+                    Id = 4,
+                    Priority = 3,
+                    Template = Template.A,
+                    Time = new TimeSpan(hours: 10, minutes: 15, seconds: 0),
+                    PredicateJson = serializer.SerializeText(
+                        (Expression<Func<Domain.Customer, bool>>)(customer => customer.Deposite > 100)
+                    )
+                },
+                new() {
+                    Id = 5,
+                    Priority = 4,
+                    Template = Template.C,
+                    Time = new TimeSpan(hours: 10, minutes: 05, seconds: 0),
+                    PredicateJson = serializer.SerializeText(
+                        (Expression<Func<Domain.Customer, bool>>)(customer => customer.IsNewCustomer)
+                    )
+                }
             };
         }
     }

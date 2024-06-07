@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemicle.MarketerTool.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemicle.MarketerTool.Worker", "Gemicle.MarketerTool.Worker\Gemicle.MarketerTool.Worker.csproj", "{A8BBDCB1-1A2A-4E25-9C1B-3347387923F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gemicle.MarketerTool.Domain", "Gemicle.MarketerTool.Domain\Gemicle.MarketerTool.Domain.csproj", "{FDD2D1CE-0326-4595-8B2E-ADCDDF4B1277}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A8BBDCB1-1A2A-4E25-9C1B-3347387923F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8BBDCB1-1A2A-4E25-9C1B-3347387923F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8BBDCB1-1A2A-4E25-9C1B-3347387923F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD2D1CE-0326-4595-8B2E-ADCDDF4B1277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD2D1CE-0326-4595-8B2E-ADCDDF4B1277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD2D1CE-0326-4595-8B2E-ADCDDF4B1277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD2D1CE-0326-4595-8B2E-ADCDDF4B1277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
