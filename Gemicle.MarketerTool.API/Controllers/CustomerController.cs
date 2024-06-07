@@ -1,5 +1,4 @@
 ﻿using Gemicle.Calculator.Services.Abstractions;
-using Gemicle.MarketerTool.API.Models;
 using Gemicle.MarketerTool.Data.Models;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +13,11 @@ namespace Gemicle.MarketerTool.API.Controllers
     {
 
         [HttpGet(Name = "GetCustomers")]
-        public async Task<ActionResult<IEnumerable<CustomerDto>>> Get()
+        public async Task<ActionResult<IEnumerable<Domain.Customer>>> Get()
         {
             List<Customer> customers = await сustomerService.GetCustomersAsync();
 
-            return this.Ok(mapper.Map<IEnumerable<CustomerDto>>(customers));
+            return this.Ok(mapper.Map<IEnumerable<Domain.Customer>>(customers));
         }
     }
 }

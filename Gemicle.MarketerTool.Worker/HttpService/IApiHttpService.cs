@@ -1,11 +1,11 @@
-﻿using Gemicle.MarketerTool.Worker.Models;
+﻿using Gemicle.MarketerTool.Domain;
 
 namespace Gemicle.MarketerTool.Worker.HttpService
 {
     public interface IApiHttpService
     {
-        Task<List<CustomerDto>> GetCustomersAsync();
+        Task<List<Customer>> GetCustomersAsync();
 
-        Task<List<CampaignDto>> GetCampaignsAsync();
+        Task<List<Campaign>> GetCampaignsAsync();
     }
 }

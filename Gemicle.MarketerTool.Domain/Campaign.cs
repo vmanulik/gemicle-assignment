@@ -1,6 +1,6 @@
 ﻿namespace Gemicle.MarketerTool.Domain
 {
-    public class Class1
+    public class Campaign
     {
         public Template Template { get; set; }
 

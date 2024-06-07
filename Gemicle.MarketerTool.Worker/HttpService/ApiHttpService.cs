@@ -1,4 +1,4 @@
-﻿using Gemicle.MarketerTool.Worker.Models;
+﻿using Gemicle.MarketerTool.Domain;
 using System.Net.Http.Json;
 
 namespace Gemicle.MarketerTool.Worker.HttpService
@@ -12,7 +12,7 @@ namespace Gemicle.MarketerTool.Worker.HttpService
             _factory = factory;
         }
 
-        public async Task<List<CustomerDto>> GetCustomersAsync()
+        public async Task<List<Customer>> GetCustomersAsync()
         {
             using (HttpClient client = _factory.CreateClient("gemicle-api"))
             {
@@ -22,11 +22,11 @@ namespace Gemicle.MarketerTool.Worker.HttpService
                     throw new Exception($"Cannot fetch customers, status code: {response.StatusCode}");
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<CustomerDto>>() ?? [];
+                return await response.Content.ReadFromJsonAsync<List<Customer>>() ?? [];
             }
         }
 
-        public async Task<List<CampaignDto>> GetCampaignsAsync()
+        public async Task<List<Campaign>> GetCampaignsAsync()
         {
             using (HttpClient client = _factory.CreateClient("gemicle-api"))
             {
@@ -36,7 +36,7 @@ namespace Gemicle.MarketerTool.Worker.HttpService
                     throw new Exception($"Cannot fetch campaigns, status code: {response.StatusCode}");
                 }
 
-                return await response.Content.ReadFromJsonAsync<List<CampaignDto>>() ?? [];
+                return await response.Content.ReadFromJsonAsync<List<Campaign>>() ?? [];
             }
         }
     }

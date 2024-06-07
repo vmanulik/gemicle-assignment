@@ -13,11 +13,11 @@ namespace Gemicle.MarketerTool.API.Controllers
     {
 
         [HttpGet(Name = "GetCampaigns")]
-        public async Task<ActionResult<IEnumerable<Campaign>>> Get()
+        public async Task<ActionResult<IEnumerable<Domain.Campaign>>> Get()
         {
             List<Campaign> customers = await campaignService.GetCampaignsAsync();
 
-            return this.Ok(mapper.Map<IEnumerable<Campaign>>(customers));
+            return this.Ok(mapper.Map<IEnumerable<Domain.Campaign>>(customers));
         }
     }
 }

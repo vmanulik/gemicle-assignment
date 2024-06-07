@@ -1,5 +1,5 @@
+using Gemicle.MarketerTool.Domain;
 using Gemicle.MarketerTool.Worker.HttpService;
-using Gemicle.MarketerTool.Worker.Models;
 using Serialize.Linq.Serializers;
 using System.Linq.Expressions;
 
@@ -8,8 +8,8 @@ namespace Gemicle.MarketerTool.Worker
     public class Worker(IApiHttpService apiHttpService,
                         ILogger<Worker> _logger) : BackgroundService
     {
-        private List<CustomerDto> _customerList;
-        private List<CampaignDto> _campaignsList;
+        private List<Customer> _customerList;
+        private List<Campaign> _campaignsList;
 
         public async override Task StartAsync(CancellationToken cancellationToken)
         {
@@ -17,8 +17,8 @@ namespace Gemicle.MarketerTool.Worker
             _campaignsList = await apiHttpService.GetCampaignsAsync();
 
             var serializer = new ExpressionSerializer(new JsonSerializer());
-            var obj = (Expression<Func<Domain.Customer, bool>>) serializer.DeserializeText(_campaignsList.First().PredicateJson);
-
+            var firstPredicate = (Expression<Func<Domain.Customer, bool>>) serializer.DeserializeText(_campaignsList.First().PredicateJson);
+            IEnumerable<Customer> firstData = _customerList.AsQueryable().Where(firstPredicate);
 
             await base.StartAsync(cancellationToken);
         }
